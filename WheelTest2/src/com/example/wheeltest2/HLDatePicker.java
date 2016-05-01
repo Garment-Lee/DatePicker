@@ -70,6 +70,7 @@ public class HLDatePicker extends LinearLayout implements OnScrollListener{
 		
 		yearWheelView.registerOnScrollListener(this);
 		monthWheelView.registerOnScrollListener(this);
+		
 	}
 	
 	private void initYearWheelViewData(){
@@ -77,7 +78,7 @@ public class HLDatePicker extends LinearLayout implements OnScrollListener{
 			yearWheelViewDataList = new ArrayList<String>();
 		}
 		yearWheelViewDataList.clear();
-		for(int i = 1900; i <= 2010; i ++ ){
+		for(int i = 1900; i <= 2100; i ++ ){
 			yearWheelViewDataList.add(String.valueOf(i));
 		}
 		yearWheelView.setItems(yearWheelViewDataList);
@@ -146,11 +147,28 @@ public class HLDatePicker extends LinearLayout implements OnScrollListener{
 	@Override
 	public void onRefreshDayWheelView() {
 		// TODO Auto-generated method stub
-		int year = Integer.parseInt(yearWheelView.getCurrentItem());
-		int month = Integer.parseInt(monthWheelView.getCurrentItem());
+		int year = yearWheelView.getCurrentIndex();
+		int month = monthWheelView.getCurrentIndex();
 		Log.i("Garment0424", "onRefreshDayWheelView year:" + year + ";month:" + month);
 		refreshDayWheel(year, month);
-		
 	}  
-
+	
+	public void setCurrentDay(int day){
+		if (dayWheelView != null) {
+			dayWheelView.setCurrentItem(day);
+		}
+	}
+	
+	public void setCurrentMonth(int month){
+		if(monthWheelView != null){
+			monthWheelView.setCurrentItem(month);
+		}
+	}
+	
+	public void setCurrentYear(int year){
+		if(yearWheelView != null){
+			yearWheelView.setCurrentItem(year);
+		}
+	}
+	
 }
