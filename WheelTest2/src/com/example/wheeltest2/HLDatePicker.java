@@ -101,7 +101,20 @@ public class HLDatePicker extends LinearLayout implements OnScrollListener{
 			dayWheelViewDataList = new ArrayList<String>();
 		}
 		dayWheelViewDataList.clear();
-		for (int i = 1; i < dayCount; i++) {
+		for (int i = 1; i <= dayCount; i++) {
+			dayWheelViewDataList.add(String.valueOf(i));
+		}
+		dayWheelView.setItems(dayWheelViewDataList);
+	}
+	
+	/**refresh the daywheel according the year and the month*/
+	private void refreshDayWheel(int year, int month){
+		int dayCount = getDaysByYearMonth(year, month);
+		//no need to refresh if the daycount not change
+		if(dayCount == dayWheelViewDataList.size())
+			return;
+		dayWheelViewDataList.clear();
+		for (int i = 1; i <= dayCount; i++) {
 			dayWheelViewDataList.add(String.valueOf(i));
 		}
 		dayWheelView.setItems(dayWheelViewDataList);
@@ -114,7 +127,7 @@ public class HLDatePicker extends LinearLayout implements OnScrollListener{
 	}
 	
 	/**
-	 * 寰楀埌瀵瑰簲鐨勫勾浠藉拰鏈堜唤鐨勫ぉ鏁�
+	 * get the count of day according to the year and month
 	 * @param year
 	 * @param month
 	 * @return
@@ -136,7 +149,7 @@ public class HLDatePicker extends LinearLayout implements OnScrollListener{
 		int year = Integer.parseInt(yearWheelView.getCurrentItem());
 		int month = Integer.parseInt(monthWheelView.getCurrentItem());
 		Log.i("Garment0424", "onRefreshDayWheelView year:" + year + ";month:" + month);
-		initDayWheelData(year, month);
+		refreshDayWheel(year, month);
 		
 	}  
 

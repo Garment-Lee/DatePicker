@@ -104,7 +104,7 @@ public class WheelView extends ScrollView{
 		items.add(0, "");
 		items.add("");
 		initWheelViewDatas();
-		refreshWheelView(0);
+		refreshWheelView(currentIndex);
 	}
 	
 	/**
@@ -281,7 +281,7 @@ public class WheelView extends ScrollView{
 	 * @param pos
 	 */
 	private void scrollerToItem(int pos){
-		WheelView.this.smoothScrollTo(0, (pos-1) * itemHeight);
+		smoothScrollTo(0, (pos-1) * itemHeight);
 	}
 	
 	/**
